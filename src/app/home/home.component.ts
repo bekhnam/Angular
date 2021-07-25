@@ -30,9 +30,11 @@ export class HomeComponent implements OnInit {
       .subscribe((dish) => this.dish = dish,
         errmess => this.errMess = <any>errmess);
     this.promotionService.getFeaturedPromotion()
-      .subscribe((promo) => this.promotion = promo);
+      .subscribe((promo) => this.promotion = promo,
+        errmess => this.errMess = <any>errmess);
     this.leaderService.getFeaturedLeader()
-      .subscribe((leader) => this.leader = leader);
+      .subscribe((leader) => this.leader = leader,
+        errmess => this.errMess = <any>errmess);
   }
 
 }
