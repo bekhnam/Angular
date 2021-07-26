@@ -81,7 +81,7 @@ export class ContactComponent implements OnInit {
     });
 
     this.feedbackForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
+      .subscribe(data => this.onValueChanged(data), errmess => this.errMess = <any>errmess);
 
     this.onValueChanged(); // reset form validation messages
   }
@@ -118,7 +118,7 @@ export class ContactComponent implements OnInit {
           this.feedbackStatus = 'submitting';
           this.visibility = 'shown';
         }, 5000);  
-      });
+      }, errmess => this.errMess = <any>errmess);
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',

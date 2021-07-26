@@ -34,8 +34,10 @@
         </div>
     </div>
 
-    <div fxFlex fxFlexOffset="20px" class="form-size" [@expand]>
+    <div fxFlex>
         <h3>Send us your Feedback</h3>
+    </div>
+    <div fxFlex fxFlexOffset="20px" class="form-size" [@expand] *ngIf="visibility === 'shown'">
         <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [@visibility]="visibility">
             <p>
                 <mat-form-field class="half-width">
@@ -85,23 +87,23 @@
             <button type="submit" mat-button class="background-primary text-floral-white"
                 [disabled]="feedbackForm.invalid">Submit</button>
         </form>
-        <div fxFlex [hidden]="feedbackSubmitted || errMess || (visibility === 'shown')">
-            <h3>Submitting Form</h3>
-            <mat-spinner></mat-spinner>
-        </div>
-        <div fxFlex *ngIf="errMess">
-            <h2>Error</h2>
-            <h4>{{errMess}}</h4>
-        </div>
-        <div *ngIf="feedbackSubmitted" [@feedback]="feedbackStatus">
-            <h3>Your Submission</h3>
-            <p>First Name: {{feedbackSubmitted.firstname}}</p>
-            <p>Last Name: {{feedbackSubmitted.lastname}}</p>
-            <p>Tel. Number: {{feedbackSubmitted.telnum}}</p>
-            <p>Email: {{feedbackSubmitted.email}}</p>
-            <p>Contact You?: {{feedbackSubmitted.agree}}</p>
-            <p>How?: {{feedbackSubmitted.contacttype}}</p>
-            <p>Feedback: {{feedbackSubmitted.message}}</p>
-        </div>
+    </div>
+    <div fxFlex [hidden]="feedbackSubmitted || errMess || (visibility === 'shown')">
+        <h3>Submitting Form</h3>
+        <mat-spinner></mat-spinner>
+    </div>
+    <div fxFlex *ngIf="errMess">
+        <h2>Error</h2>
+        <h4>{{errMess}}</h4>
+    </div>
+    <div *ngIf="feedbackSubmitted" [@feedback]="feedbackStatus">
+        <h3>Your Submission</h3>
+        <p>First Name: {{feedbackSubmitted.firstname}}</p>
+        <p>Last Name: {{feedbackSubmitted.lastname}}</p>
+        <p>Tel. Number: {{feedbackSubmitted.telnum}}</p>
+        <p>Email: {{feedbackSubmitted.email}}</p>
+        <p>Contact You?: {{feedbackSubmitted.agree}}</p>
+        <p>How?: {{feedbackSubmitted.contacttype}}</p>
+        <p>Feedback: {{feedbackSubmitted.message}}</p>
     </div>
 </div>
