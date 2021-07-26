@@ -54,3 +54,15 @@ export function expand() {
         ])
     ]);
 }
+
+export function feedback() {
+    return trigger('feedback', [
+        state('submitting', style({
+            opacity: 0
+        })),
+        state('successful', style({
+            opacity: 1
+        })),
+        transition('* => *', animate('200ms ease-in'))
+    ]);
+}

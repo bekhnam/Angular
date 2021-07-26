@@ -34,9 +34,9 @@
         </div>
     </div>
 
-    <div fxFlex fxFlexOffset="20px" class="form-size">
+    <div fxFlex fxFlexOffset="20px" class="form-size" [@expand]>
         <h3>Send us your Feedback</h3>
-        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [@visibility]="visibility">
             <p>
                 <mat-form-field class="half-width">
                     <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -82,8 +82,26 @@
                     <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
                 </mat-form-field>
             </p>
-            <button type="submit" mat-button class="backgroud-primary text-floral-white"
+            <button type="submit" mat-button class="background-primary text-floral-white"
                 [disabled]="feedbackForm.invalid">Submit</button>
         </form>
+        <div fxFlex [hidden]="feedbackSubmitted || errMess || (visibility === 'shown')">
+            <h3>Submitting Form</h3>
+            <mat-spinner></mat-spinner>
+        </div>
+        <div fxFlex *ngIf="errMess">
+            <h2>Error</h2>
+            <h4>{{errMess}}</h4>
+        </div>
+        <div *ngIf="feedbackSubmitted" [@feedback]="feedbackStatus">
+            <h3>Your Submission</h3>
+            <p>First Name: {{feedbackSubmitted.firstname}}</p>
+            <p>Last Name: {{feedbackSubmitted.lastname}}</p>
+            <p>Tel. Number: {{feedbackSubmitted.telnum}}</p>
+            <p>Email: {{feedbackSubmitted.email}}</p>
+            <p>Contact You?: {{feedbackSubmitted.agree}}</p>
+            <p>How?: {{feedbackSubmitted.contacttype}}</p>
+            <p>Feedback: {{feedbackSubmitted.message}}</p>
+        </div>
     </div>
 </div>
